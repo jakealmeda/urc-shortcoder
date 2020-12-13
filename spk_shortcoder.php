@@ -3,7 +3,7 @@
 /**
  * Plugin Name: SPK - Shortcoder
  * Description: This plugin lets you create custom shortcodes and gives you the freedom to display how the contents would look.
- * Version: 1.3
+ * Version: 1.4
  * Author: Jake Almeda
  * Author URI: http://smarterwebpackages.com/
  * Network: true
@@ -127,10 +127,23 @@ function spk_shortcodes_boxes() {
             // Set counter
             $att_counter = 0;
 
+            // Set variable
+            $att_contents = '';
+
             // Display
             for( $a=1; $a<=20; $a++ ) {
+                
                 // show div if there's attribute
-                if( $attr_array[$a-1]['key'] ) {
+                if( !empty( $attr_array[$a-1]['key'] ) ) {
+                    $attr_key = $attr_array[$a-1]['key'];
+                    $attr_value = $attr_array[$a-1]['value'];
+                } else {
+                    $attr_key = '';
+                    $attr_value = '';
+                }
+
+
+                if( $attr_key ) {
                     $add_class = '';
                     $att_counter++;
                 } else {
@@ -138,14 +151,14 @@ function spk_shortcodes_boxes() {
                 }
 
                 // validate value if default
-                if( $attr_array[$a-1]['value'] == 'default_value' ) {
+                if( $attr_value == 'default_value' ) {
                     $att_val = '';
                 } else {
-                    $att_val = $attr_array[$a-1]['value'];
+                    $att_val = $attr_value;
                 }
 
                 $att_contents .= '<div id="att_div_'.$a.'" '.$add_class.'>
-                                    <span><input type="text" id="att_name_'.$a.'" name="att_name_'.$a.'" value="'.$attr_array[$a-1]['key'].'" placeholder="attribute_name" /></span>
+                                    <span><input type="text" id="att_name_'.$a.'" name="att_name_'.$a.'" value="'.$attr_key.'" placeholder="attribute_name" /></span>
                                     <span><input type="text" id="att_val_'.$a.'" name="att_val_'.$a.'" value="'.$att_val.'" placeholder="default_value" /></span>
                                     <span><a id="rem_att_'.$a.'" class="onmouseover">Remove</a></span>
                                 </div>';
@@ -179,9 +192,9 @@ function spk_shortcodes_boxes() {
             /*$aa_insta_e = get_post_meta( $post->ID, '_cb_instagram_embed', false );
             if( $aa_insta_e ) {
                 $aa_insta_checked = 'checked="checked"';
-            } else {
+            } else {*/
                 $aa_insta_checked = '';
-            }*/
+            //}
 
             echo '<table border="0" width="100%">
                     <tr>
@@ -542,9 +555,9 @@ function spk_getpostattributes( $post, $field, $pid, $cfields ) {
             on a.id = b.post_id
             where
             a.id='".$this_id." '", OBJECT );
-
+    
     foreach( $spk_postatts as $atts ) {
-
+        
         // check if $key starts with underscore (_); attribute names don't start with it
         $exp_key = explode( '_', $atts->meta_key );
         if( trim( $exp_key[0] ) ) {
@@ -567,7 +580,10 @@ function spk_getpostattributes( $post, $field, $pid, $cfields ) {
 
     }
     
-    return $return;
+    if( !empty( $return ) ) {
+        return $return;
+    }
+    
 
     // Restore original Post Data
     wp_reset_postdata();
