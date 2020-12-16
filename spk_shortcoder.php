@@ -3,7 +3,7 @@
 /**
  * Plugin Name: SPK - Shortcoder
  * Description: This plugin lets you create custom shortcodes and gives you the freedom to display how the contents would look.
- * Version: 1.4
+ * Version: 1.4.1
  * Author: Jake Almeda
  * Author URI: http://smarterwebpackages.com/
  * Network: true
@@ -664,8 +664,17 @@ function spk_save_atts( $post_id, $post ) {
     // -----------
     for( $a=1; $a<=20; $a++ ) {
 
-        $meta_key = $_POST[ 'att_name_'.$a ];
-        $meta_value = $_POST[ 'att_val_'.$a ];
+        if( isset( $_POST[ 'att_name_'.$a ] ) ) {
+            $meta_key = $_POST[ 'att_name_'.$a ];
+        } else {
+            $meta_key = NULL;
+        }
+
+        if( isset( $_POST[ 'att_val_'.$a ] ) ) {
+            $meta_value = $_POST[ 'att_val_'.$a ];
+        } else {
+            $meta_value = NULL;
+        }
         
         // check if name has value; skip if empty
         if( $meta_key ) {
