@@ -1,14 +1,14 @@
 <?php
 
-/**
- * Plugin Name: SPK - Shortcoder
- * Description: This plugin lets you create custom shortcodes and gives you the freedom to display how the contents would look.
- * Version: 1.3
- * Author: Jake Almeda
- * Author URI: http://smarterwebpackages.com/
- * Network: true
- * License: GPL2
- */
+// **
+// * Plugin Name: SPK - Shortcoder
+// * Description: This plugin lets you create custom shortcodes and gives you the freedom to display how the contents would look.
+// * Version: 1.3
+// * Author: Jake Almeda
+// * Author URI: http://smarterwebpackages.com/
+// * Network: true
+// * License: GPL2
+// */
 
 /*  Copyright 2016  Jake Almeda  (email : jake@smarterwebpackages.com)
     This program is free software; you can redistribute it and/or modify

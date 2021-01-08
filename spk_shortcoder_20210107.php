@@ -1,14 +1,14 @@
 <?php
 
-/**
- * Plugin Name: SPK - Shortcoder
- * Description: This plugin lets you create custom shortcodes and gives you the freedom to display how the contents would look.
- * Version: 1.4.1
- * Author: Jake Almeda
- * Author URI: http://smarterwebpackages.com/
- * Network: true
- * License: GPL2
- */
+// **
+// * Plugin Name: SPK - Shortcoder
+// * Description: This plugin lets you create custom shortcodes and gives you the freedom to display how the contents would look.
+// * Version: 1.4
+// * Author: Jake Almeda
+// * Author URI: http://smarterwebpackages.com/
+// * Network: true
+// * License: GPL2
+// */
 
 /*  Copyright 2016  Jake Almeda  (email : jake@smarterwebpackages.com)
     This program is free software; you can redistribute it and/or modify
@@ -278,14 +278,7 @@ function spk_shortcodes_boxes() {
                 'quicktags' => false,
                 'media_buttons' => false,
             );
-            
-            // validate array
-            if( is_array( $field_value ) && !empty( $field_value[0] ) ) {
-                $fvalue = $field_value[0];
-            } else {
-                $fvalue = '';
-            }
-            echo '<div>'.wp_editor( $fvalue, '_spk_shortcoders_code', $args ).'</div>';
+            echo '<div>'.wp_editor( $field_value[0], '_spk_shortcoders_code', $args ).'</div>';
             //echo '<textarea name="_spk_shortcoders_code" id="_spk_shortcoders_code" rows="10" cols="100">'.$field_value[0].'</textarea>';
 
         }
@@ -551,13 +544,7 @@ function spk_getpostattributes( $post, $field, $pid, $cfields ) {
     if( $pid ) {
         $this_id = $pid;
     } else {
-
-        if( is_object( $post ) ) {
-            $this_id = $post->ID;    
-        } else {
-            $this_id = '';
-        }
-        
+        $this_id = $post->ID;
     }
     
     $spk_postatts = $wpdb->get_results(
@@ -649,8 +636,6 @@ function spk_save_slug_code( $nonce_field, $post_id, $post, $checker ) {
         // code - we don't want to remove any html tags
         if( isset( $_POST[ $nonce_field ] ) ) {
             $value = $_POST[ $nonce_field ];
-        } else {
-            $value = '';
         }
     }
 
@@ -760,7 +745,7 @@ function spk_save_cfields( $post_id, $post ) {
     $cb_ppc_opt = isset( $_POST[ 'cb_ppc_opt' ] );
 
     // get selected post
-    $pname = isset( $_POST[ 'dtm_post_type' ] );
+    $pname = $_POST[ 'dtm_post_type' ];
 
     // key name
     $key = 'aa_cpf_postfield';
