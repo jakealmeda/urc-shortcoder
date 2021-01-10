@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: SPK - Shortcoder
+ * Plugin Name: URC Shortcoder
  * Description: This plugin lets you create custom shortcodes and gives you the freedom to display how the contents would look.
  * Version: 1.4.1
  * Author: Jake Almeda
