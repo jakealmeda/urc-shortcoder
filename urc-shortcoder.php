@@ -675,6 +675,8 @@ function spk_save_slug_code( $nonce_field, $post_id, $post, $checker ) {
  * ----------------------------------------------------------------------------------------- */
 function spk_save_atts( $post_id, $post ) {
 
+    $meta_key_fields = array(); // declare an empty array
+
     // Save
     // -----------
     for( $a=1; $a<=20; $a++ ) {
@@ -734,7 +736,7 @@ function spk_save_atts( $post_id, $post ) {
 
         foreach ($attr_array as $val) {
 
-            if( is_array( $meta_key_fields ) ) {
+            if( is_array( $meta_key_fields ) && !empty( $meta_key_fields ) ) {
                 // WHAT IF THERE ARE 0 ATTRIBUTE FIELDS!!!!!!!!!!!!!!!!!!!!!
                 if( !in_array( $val, $meta_key_fields ) ) {
                     // field has been removed in UI; delete in DB
