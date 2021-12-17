@@ -933,9 +933,9 @@ add_action( 'admin_enqueue_scripts', 'spk_sc_enqueue_scripts' );
 function spk_sc_enqueue_scripts() {
 
     // enqueue needed native jQuery files
-    if( !wp_script_is( 'jquery-ui-core', 'enqueued' ) ) {
+    /*if( !wp_script_is( 'jquery-ui-core', 'enqueued' ) ) {
         wp_enqueue_script( 'jquery-ui-core' );
-    }
+    }*/
 
     if( !wp_script_is( 'jquery-effects-core', 'enqueued' ) ) {
         wp_enqueue_script( 'jquery-effects-core' );
